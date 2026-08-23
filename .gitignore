@@ -1,0 +1,9 @@
+
+target/
+dbt_packages/
+logs/
+
+# dbt generated files
+target/
+logs/
+dbt_packages/

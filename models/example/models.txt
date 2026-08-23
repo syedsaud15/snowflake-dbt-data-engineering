@@ -1,0 +1,6 @@
+models
+│
+├── staging
+├── marts
+├── macros
+└── example
