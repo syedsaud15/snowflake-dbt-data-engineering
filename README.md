@@ -19,7 +19,7 @@ flowchart LR
 - Unique, not-null, accepted-value, and relationship tests
 - Daily Airflow DAG with retries that runs `dbt seed` followed by `dbt build`
 - Environment-variable based Snowflake profile example; no credentials committed
-- Credential-free repository checks in GitHub Actions
+- Credential-free repository validation script
 
 ## Repository structure
 
@@ -64,5 +64,4 @@ python -m py_compile dags/dbt_student_analytics.py
 python scripts/validate_project.py
 ```
 
-Live Snowflake execution requires your own account and is not performed by CI. The `labs/` directory preserves notes from the smaller practice repositories that were consolidated into this project.
-
+Live Snowflake execution requires your own account and is not performed by the credential-free local checks. The `labs/` directory preserves notes from the smaller practice repositories that were consolidated into this project.
