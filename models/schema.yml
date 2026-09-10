@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_students
+    description: Cleaned student records loaded from the sample seed.
+    columns:
+      - name: student_id
+        data_tests: [not_null, unique]
+      - name: email
+        data_tests: [not_null, unique]
+
+  - name: stg_courses
+    description: Standardized course reference data.
+    columns:
+      - name: course_id
+        data_tests: [not_null, unique]
+
+  - name: stg_enrollments
+    description: Cleaned enrollment events.
+    columns:
+      - name: enrollment_id
+        data_tests: [not_null, unique]
+      - name: student_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_students')
+                field: student_id
+      - name: course_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_courses')
+                field: course_id
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['ACTIVE', 'COMPLETED', 'CANCELLED']
+
+  - name: fct_student_course
+    description: Enrollment fact table enriched with student and course attributes.
+    columns:
+      - name: enrollment_id
+        data_tests: [not_null, unique]
+      - name: student_id
+        data_tests: [not_null]
+      - name: course_id
+        data_tests: [not_null]
+
